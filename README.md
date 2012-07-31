@@ -4,8 +4,7 @@ Parameters
 ----------
 
     -h, --help            show this help message and exit
-    -f DATE_FILE, --file=DATE_FILE
-                          Date file.
+    --file=DATE_FILE      Date file.
     --start=DATE_START    Start date in format DD/MM/YYYY.
     --end=DATE_END        End date in format DD/MM/YYYY.
     --shift=SHIFT         Shift duration by day in hours.
