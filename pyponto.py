@@ -12,7 +12,7 @@ time_fmt = '%H:%M'
 total_extra = timedelta()
 
 parser = OptionParser()
-parser.add_option("-f", "--file", dest = "date_file",
+parser.add_option("--file", dest = "date_file",
     help = u"Arquivo com as datas.")
 parser.add_option("--start", dest = "date_start",
     help = u"Data inicial no formato DD/MM/YYYY.")
