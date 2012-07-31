@@ -9,23 +9,27 @@ from optparse import OptionParser
 day_fmt = '%d/%m/%Y'
 time_fmt = '%H:%M'
 
-interval = timedelta(hours = 1)
-shift = timedelta(hours = 8)
 total_extra = timedelta()
 
 parser = OptionParser()
 parser.add_option("-f", "--file", dest = "date_file",
     help = u"Arquivo com as datas.")
-parser.add_option("-i", "--init", dest = "date_init",
+parser.add_option("--start", dest = "date_start",
     help = u"Data inicial no formato DD/MM/YYYY.")
-parser.add_option("-e", "--end", dest = "date_end",
+parser.add_option("--end", dest = "date_end",
     help = u"Data final no formato DD/MM/YYYY.")
+parser.add_option("--shift", dest = "shift",
+    help = u"Turno de trabalho em horas por dia.")
+parser.add_option("--interval", dest = "interval",
+    help = u"Total de intervalos em horas por dia.")
 (options, args) = parser.parse_args()
 
 try:
     date_file = options.date_file
-    date_init = datetime.strptime(options.date_init, day_fmt)
+    date_start = datetime.strptime(options.date_start, day_fmt)
     date_end = datetime.strptime(options.date_end, day_fmt)
+    shift = timedelta(hours = int(options.shift))
+    interval = timedelta(hours = int(options.interval))
 except:
     parser.print_help()
     exit()
@@ -51,7 +55,7 @@ for line in f.readlines():
     except:
         continue
 
-    if date < date_init or date > date_end:
+    if date < date_start or date > date_end:
         continue
 
     extra = end - init - shift - interval
